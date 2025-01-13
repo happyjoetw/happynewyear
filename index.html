@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>祝福語生成器</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background-color: #ff0000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 90%;
+            width: 600px;
+            margin: 20px auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 2em;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            font-size: 1.2em;
+            width: 80%;
+            max-width: 300px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #blessing {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 100px;
+            background-color: white;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            button {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>蛇年祝福語生成器</h1>
+        <button onclick="generateBlessing()">點我生成祝福語</button>
+        <div id="blessing"></div>
+        <div class="footer">國泰人壽喬淳義祝福您</div>
+    </div>
+
+    <script>
+        const blessings = [
+            "蛇年祝您鴻運當頭，步步高升！",
+            "願您蛇年事業騰飛，財源滾滾！",
+            "祝您蛇年身體健康，闔家歡樂！",
+            "蛇年旺運，願您生意興隆，財運亨通！",
+            "祝福您蛇年萬事勝意，平安喜樂！",
+            "蛇年祝您心想事成，幸福安康！",
+            "願您蛇年好運連連，笑口常開！",
+            "祝您蛇年事業有成，福祿雙全！",
+            "蛇年祝您福氣東來，吉星高照！",
+            "願您蛇年身體健壯，事業長青！",
+            "祝您蛇年好運到，財運旺旺來！",
+            "蛇年祝您生意興隆，佳績頻傳！",
+            "願您蛇年升官發財，前程似錦！",
+            "祝您蛇年萬事順遂，心想事成！",
+            "蛇年祝您財源廣進，事業順利！",
+            "願您蛇年工作順心，薪酬倍增！",
+            "祝您蛇年福祿雙全，家庭美滿！",
+            "蛇年祝您鵬程萬里，財運亨通！",
+            "願您蛇年投資得利，收益豐厚！",
+            "祝您蛇年生意昌隆，業績長紅！",
+            "蛇年祝您健康長壽，富貴吉祥！",
+            "蛇年祝您生意紅火，財源廣進！",
+            "祝您蛇年事業長虹，飛黃騰達！",
+            "願您蛇年好運不斷，順心如意！",
+            "蛇年祝您萬事興旺，財運亨通！",
+            "祝您蛇年生意蒸蒸日上，財源滾滾！",
+            "願您蛇年平安喜樂，事業有成！",
+            "蛇年祝您身體健康，家庭和睦！",
+            "祝願您蛇年福星高照，萬事如意！",
+            "蛇年祝您生意興旺，財運亨通！",
+            "願您蛇年步步高升，成就卓越！",
+            "祝您蛇年福祿雙全，喜樂安康！",
+            "願您蛇年事業輝煌，碩果累累！",
+            "祝願蛇年福星高照，喜事連連！",
+            "蛇年大吉，願您闔家安康，幸福美滿！",
+            "蛇年祝您吉祥如意，百事興旺！",
+            "願您蛇年福運亨通，鴻圖大展！",
+            "祝您蛇年大展宏圖，成就非凡！",
+            "蛇年祝您福壽安康，萬事如意！",
+            "金蛇獻瑞，願您蛇年福運綿綿！",
+            "祝您蛇年錦上添花，幸福滿滿！",
+            "蛇年祝您事業有成，家庭美滿！",
+            "願您蛇年福氣滿溢，吉慶有餘！",
+            "祝願蛇年事業輝煌，前程似錦！",
+            "蛇年大吉，願您福運連連，喜樂安康！"
+        ];
+
+        function generateBlessing() {
+            const randomBlessing = blessings[Math.floor(Math.random() * blessings.length)];
+            const blessingElement = document.getElementById('blessing');
+            blessingElement.textContent = randomBlessing;
+            
+            navigator.clipboard.writeText(randomBlessing).then(() => {
+                alert('祝福語已幫您複製到剪貼簿！不喜歡可以再繼續生成喔！');
+            }).catch(err => {
+                console.error('複製失敗：', err);
+            });
+        }
+    </script>
+</body>
+</html>
